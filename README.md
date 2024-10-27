@@ -1,11 +1,11 @@
-Here's the README in markdown format:
 
-```markdown
+
+
 # Streamlit Chat Widget
 
 ![Streamlit Chat Widget](https://path-to-your-image/streamlit_chat_widget.png)
 
-The `streamlit_chat_widget` is a custom chat input component designed for Streamlit applications, allowing users to send text and audio messages seamlessly. This widget can be integrated into Streamlit apps, making it ideal for building conversational AI interfaces, voice assistants, or any chat-based applications.
+The `streamlit_chat_widget` is a custom chat input component designed for Streamlit applications, allowing users to send text and audio messages seamlessly. This widget can be integrated into Streamlit apps, making it ideal for building conversational AI interfaces, voice assistants, or any chat-based applications the component was developed by Mohammed Bahageel artificial Intelligence developer.
 
 ## Features
 
