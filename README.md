@@ -3,7 +3,7 @@
 
 # Streamlit Chat Widget
 
-![Streamlit Chat Widget](https://path-to-your-image/streamlit_chat_widget.png)
+![Streamlit Chat Widget](https://i.ibb.co/dBpSmjW/chat-input-widget.png)
 
 The `streamlit_chat_widget` is a custom chat input component designed for Streamlit applications, allowing users to send text and audio messages seamlessly. This widget can be integrated into Streamlit apps, making it ideal for building conversational AI interfaces, voice assistants, or any chat-based applications the component was developed by Mohammed Bahageel artificial Intelligence developer.
 
@@ -18,7 +18,7 @@ The `streamlit_chat_widget` is a custom chat input component designed for Stream
 Install the package directly from PyPI:
 
 ```bash
-pip install streamlit_chat_widget
+pip install streamlit-chat-widget==0.1.0
 ```
 
 ## Setup
@@ -68,16 +68,15 @@ def main():
         st.write(message)
 
     # Display the chat input widget at the bottom
-    response = chat_input_widget()
+    user_input = chat_input_widget()
 
     # Process the user's input from the widget
-    if response:
-        if "text" in response:
-            user_text = response["text"]
+     if user_input:
+        if "text" in user_input:
+            user_text =user_input["text"]
             st.session_state.chat_history.append(f"You: {user_text}")
-        elif "audioFile" in response:
-            # Handle audio file processing
-            audio_bytes = bytes(response["audioFile"])
+        elif "audioFile" in user_input:
+            audio_bytes = bytes(user_input["audioFile"])
             st.audio(audio_bytes)
 
 if __name__ == "__main__":
@@ -106,14 +105,14 @@ def app():
         st.write(message)
 
     # Display the chat input widget at the bottom
-    response = chat_input_widget()
+    user_input = chat_input_widget()
 
-    if response:
-        if "text" in response:
-            user_text = response["text"]
+    if user_input:
+        if "text" in user_input:
+            user_text =user_input["text"]
             st.session_state.chat_history.append(f"You: {user_text}")
-        elif "audioFile" in response:
-            audio_bytes = bytes(response["audioFile"])
+        elif "audioFile" in user_input:
+            audio_bytes = bytes(user_input["audioFile"])
             st.audio(audio_bytes)
 
 if __name__ == "__main__":
@@ -136,13 +135,31 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
+ 
 ```
+## Additional Customization: 
+To postion the chat input widget in a fixed postion at the bottom of streamlit application use streamlit 
+floating containers
+```python
 
+import streamlit as st
+from streamlit_float import *
+from streamlit_chat_widget import chat_input_widget
+
+def app():  
+    float_init()
+    footer_container = st.container()
+    with footer_container:
+        user_input = chat_input_widget()
+    footer_container.float(
+        "display:flex; align-items:center;justify-content:center; overflow:hidden visible;flex-direction:column; position:fixed;bottom:15px;"
+    )
+    
+if __name__ == "__main__":
+    app()
+```
 ### License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
----
 
-This is a powerful, customizable chat widget for Streamlit applications. Feel free to contribute to its development or open issues for any bugs or feature requests!
-```
