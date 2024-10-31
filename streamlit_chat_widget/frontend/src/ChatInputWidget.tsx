@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Streamlit, withStreamlitConnection } from "streamlit-component-lib";
 import { useReactMediaRecorder } from "react-media-recorder";
 import SendIcon from "@mui/icons-material/Send";
@@ -9,12 +9,9 @@ import './ChatInputWidget.css';
 const ChatInputWidget: React.FC = () => {
   const [inputText, setInputText] = useState<string>("");
   const [isRecording, setIsRecording] = useState<boolean>(false);
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-  const {
-    startRecording,
-    stopRecording,
-    mediaBlobUrl,
-  } = useReactMediaRecorder({ audio: true });
+  const { startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder({ audio: true });
 
   useEffect(() => {
     Streamlit.setFrameHeight(650);  // Set component height
@@ -46,14 +43,34 @@ const ChatInputWidget: React.FC = () => {
     }
   }, [mediaBlobUrl, fetchAudioAndSend]);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const adjustTextAreaHeight = (reset: boolean = false) => {
+    if (textAreaRef.current) {
+      textAreaRef.current.style.height = "auto"; // Reset to auto first
+      if (!reset) {
+        textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`; // Adjust to content
+      }
+    }
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputText(event.target.value);
+    adjustTextAreaHeight();
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();  // Prevents newline on Enter
+      sendDataToStreamlit({ text: inputText });
+      setInputText("");  // Clear input after sending
+      adjustTextAreaHeight(true);  // Reset height after sending
+    }
   };
 
   const handleIconClick = () => {
     if (inputText.trim().length > 0) {
       sendDataToStreamlit({ text: inputText });
-      setInputText("");
+      setInputText("");  // Clear input after sending
+      adjustTextAreaHeight(true);  // Reset height after sending
     } else {
       if (isRecording) {
         stopRecording();
@@ -67,12 +84,14 @@ const ChatInputWidget: React.FC = () => {
 
   return (
     <div className="chat-container">
-      <input
-        type="text"
+      <textarea
+        ref={textAreaRef}
         className="chat-input"
         placeholder="Type a message..."
         value={inputText}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
+        rows={1}  // Set initial rows to 1
       />
       <button className="icon-btn" onClick={handleIconClick}>
         {inputText.trim().length > 0 ? (
