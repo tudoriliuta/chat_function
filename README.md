@@ -18,7 +18,7 @@ The `streamlit_chat_widget` is a custom chat input component designed for Stream
 Install the package directly from PyPI:
 
 ```bash
-pip install --U streamlit-chat-widget
+pip install streamlit-chat-widget
 ```
 
 ## Setup
