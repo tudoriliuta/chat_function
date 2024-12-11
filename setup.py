@@ -5,14 +5,14 @@ import os
 frontend_path = os.path.join('streamlit_chat_widget', 'frontend', 'build')
 
 setup(
-    name="streamlit_chat_widget",
-    version="0.2.0",
+    name="streamlit_chat_function",
+    version="1.0.0-TAI",
     description="A custom chat input widget for Streamlit",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     author="Mohammed Bahageel",
     author_email="youremail@example.com",
-    url="https://github.com/yourusername/streamlit_chat_widget",
+    url="https://github.com/tudoriliuta/chat_function",
     packages=find_packages(),
     include_package_data=True,
     install_requires=[

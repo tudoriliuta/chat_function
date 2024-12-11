@@ -10,7 +10,7 @@ body {
 /* Chat container styles with glassmorphic effect */
 .chat-container {
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.1); /* Glassmorphic effect */
+    background: #ffffff1a; /* Glassmorphic effect */
     border-radius: 30px;
     padding: 10px;
     display: flex;
@@ -20,7 +20,7 @@ body {
     width: 90%;
     max-width: 600px;
     position: fixed; /* Ensure it's fixed at the bottom */
-    bottom: 10px;
+    /* bottom: 10px; */
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
@@ -32,7 +32,7 @@ body {
     border: none;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(6px);
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 10px;
     outline: none;
     font-size: 16px;
@@ -53,7 +53,7 @@ body {
 
 /* Button styles with gradient and shadow effects */
 .icon-btn {
-    background: linear-gradient(145deg, #00B0F0, #00D4FF);
+    background: linear-gradient(145deg, #38D3A8, #4FEAC8);
     border: none;
     border-radius: 50%;
     color: white;
@@ -103,7 +103,7 @@ body {
 /* Media Queries */
 @media (max-width: 768px) {
     .chat-container {
-        max-width: 90%;
+        max-width: 95%;
         padding: 8px;
     }
 

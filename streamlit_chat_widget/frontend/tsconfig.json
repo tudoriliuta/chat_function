@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -10,16 +14,20 @@
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "typeRoots": ["node_modules/@types"],
-    "types": ["react", "react-dom"],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "react",
+      "react-dom"
+    ],
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"  // Updated to ensure compatibility
+    "jsx": "preserve"
   },
   "include": [
-    "src", 
-    "src/react-dom.d.ts" // Include path for custom declaration
+    "src",
+    "src/react-dom.d.ts"
   ]
 }
-
